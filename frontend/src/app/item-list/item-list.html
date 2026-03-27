@@ -1,0 +1,31 @@
+<!-- component template -->
+
+<div class="container">
+  <h2>Item Management</h2>
+  <table class="invoice-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Total</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td><input [(ngModel)]="item.name" (ngModelChange)="updateItem(item)" placeholder="Item name"></td>
+        <td><input type="number" [(ngModel)]="item.price" (ngModelChange)="updateItem(item)" step="0.01" min="0"></td>
+        <td><input type="number" [(ngModel)]="item.quantity" (ngModelChange)="updateItem(item)" min="0"></td>
+        <td class="total-cell">{{ (item.price * item.quantity) | currency:'USD':'symbol':'1.2-2' }}</td>
+        <td><button class="delete-btn" (click)="deleteItem(item.id)">✖</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="add-btn" (click)="addItem()">+ Add new item</button>
+
+  <div class="grand-total">
+    <strong>Grand Total:</strong> {{ grandTotal | currency:'USD':'symbol':'1.2-2' }}
+  </div>
+</div>

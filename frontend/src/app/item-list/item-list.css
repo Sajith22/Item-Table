@@ -1,0 +1,13 @@
+/* component styles */
+
+.container { max-width: 900px; margin: 30px auto; font-family: Arial, sans-serif; }
+.invoice-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+.invoice-table th, .invoice-table td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+.invoice-table th { background-color: #f4f4f4; }
+input { width: 100%; padding: 6px; border: 1px solid #aaa; border-radius: 4px; }
+.total-cell { font-weight: bold; background-color: #f9f9f9; }
+.delete-btn { background: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; }
+.delete-btn:hover { background: #c0392b; }
+.add-btn { background: #27ae60; color: white; border: none; padding: 10px 16px; font-size: 16px; border-radius: 4px; cursor: pointer; }
+.add-btn:hover { background: #219653; }
+.grand-total { margin-top: 20px; text-align: right; font-size: 1.4em; padding-top: 15px; border-top: 2px solid #333; }
