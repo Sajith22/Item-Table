@@ -1,38 +1,37 @@
 //This is your service file
 
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-export interface Item {
-  id: number;
-  name: string;
+export interface InvoiceItem {
+  itemName: string;
+  qty: number;
   price: number;
-  quantity: number;
+  total?: number;
+}
+
+export interface Invoice {
+  id?: number;
+  customerName: string;
+  total: number;
+  date?: Date;
+  items: InvoiceItem[];
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
-  private apiUrl = 'http://localhost:3000/items';
+  private apiUrl = 'http://localhost:3000/invoices';
 
   constructor(private http: HttpClient) {}
 
-  getItems(): Observable<Item[]> {
-    return this.http.get<Item[]>(this.apiUrl);
+  getInvoices(): Observable<Invoice[]> {
+    return this.http.get<Invoice[]>(this.apiUrl);
   }
 
-  addItem(): Observable<Item> {
-    return this.http.post<Item>(this.apiUrl, {});
-  }
-
-  updateItem(id: number, item: Partial<Item>): Observable<Item> {
-    return this.http.put<Item>(`${this.apiUrl}/${id}`, item);
-  }
-
-  deleteItem(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  createInvoice(invoice: { customerName: string; items: InvoiceItem[] }): Observable<Invoice> {
+    return this.http.post<Invoice>(this.apiUrl, invoice);
   }
 }
